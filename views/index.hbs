@@ -1,0 +1,57 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <h1>WED2 Testat</h1>
+        <h2>by adeicha & dfuoco</h2>
+        <form action='/create' method='get'><input id="create"type='submit' value='Create a new note'></form>
+        <button id="styleSwitcher">Style Switcher</button>
+        <button id="sortFinish">By finish date</button>
+        <button id="sortCreate">By created date</button>
+        <button id="sortImportance">By Importance</button>
+        <button id="hideDone">Fertige verbergen</button>
+        <form action='/notes' method='get'><input type='submit' value='Test 4 all'></form>
+
+        <table class="table table-striped">
+            <caption>
+                Ihre Notizen:
+            </caption>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Titel</th>
+                <th>Beschreibung</th>
+                <th>Priorität</th>
+                <th>Ablaufdatum</th>
+                <th>Erledigt</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#if notes}}
+            {{#each notes}}
+                <tr>
+                    <th scope="row">{{_id}}</th>
+                    <td>{{title}}</td>
+                    <td>{{description}}</td>
+                    <td>{{prio}}</td>
+                    <td>{{finishedUntil}}</td>
+                    <td>{{done}}</td>
+                    <td>
+                        <form action='/edit#{{_id}}' method='post'>
+                            <input data-id="{{_id}}" type='submit' value='edit'>
+                        </form>
+                    </td>
+                </tr>
+            {{/each}}
+            </tbody>
+            {{else}}
+
+                <tfoot>
+                    No notes found
+                </tfoot>
+            {{/if}}
+
+        </table>
+
+    </body>
+</html>

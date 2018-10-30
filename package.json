@@ -1,0 +1,26 @@
+{
+  "name": "testat_wed2",
+  "version": "1.0.0",
+  "description": "WED2 Testat",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --experimental-modules index.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dfuoco",
+  "license": "ISC",
+  "dependencies": {
+    "@std/esm": "^0.23.3",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "express-hbs": "^0.8.4",
+    "method-override": "^2.3.3",
+    "nedb": "^1.8.0",
+    "nedb-promise": "^2.0.1"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "WED2",
+    "Testat"
+  ]
+}
