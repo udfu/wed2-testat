@@ -12,24 +12,10 @@
         <button id="hideDone">Fertige verbergen</button>
         <form action='/notes' method='get'><input type='submit' value='Test 4 all'></form>
 
-        <table class="table table-striped">
-            <caption>
-                Ihre Notizen:
-            </caption>
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Titel</th>
-                <th>Beschreibung</th>
-                <th>Priorität</th>
-                <th>Ablaufdatum</th>
-                <th>Erledigt</th>
-            </tr>
-            </thead>
-            <tbody>
+        <h3>your notes</h3>
             {{#if notes}}
             {{#each notes}}
-                <tr>
+                <!--<tr>
                     <th scope="row">{{_id}}</th>
                     <td>{{title}}</td>
                     <td>{{description}}</td>
@@ -37,21 +23,38 @@
                     <td>{{finishedUntil}}</td>
                     <td>{{done}}</td>
                     <td>
-                        <form action='/edit#{{_id}}' method='post'>
+                        <form action='/edit?id={{_id}}' method='post'>
                             <input data-id="{{_id}}" type='submit' value='edit'>
                         </form>
                     </td>
-                </tr>
+                </tr>-->
+
+                <div class="note">
+                    <h3>{{title}}</h3>
+                    <div>{{description}}</div>
+                    <div>
+                        {{#times this.prio}}
+                            <span class="star">*</span>
+                        {{/times}}
+                    </div>
+                    <div>Finished until: {{finishedUntil}}</div>
+                    <div>
+                        <input type="checkbox" value="done" name="done" {{#if todoObject.done}} checked {{/if}} >
+                    </div>
+                    <div>
+                        <form action='/edit?id={{_id}}' method='post'>
+                            <input data-id="{{_id}}" type='submit' value='edit'>
+                        </form>
+                    </div>
+                </div>
             {{/each}}
-            </tbody>
             {{else}}
 
-                <tfoot>
+                <p>
                     No notes found
-                </tfoot>
+                </p>
             {{/if}}
 
-        </table>
 
     </body>
 </html>

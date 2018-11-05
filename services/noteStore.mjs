@@ -26,7 +26,7 @@ export class NoteBook {
     }
 
     async get(id) {
-        return await this.db.findOne({_id: id});
+        return { note: await this.db.findOne({_id: id})};
     }
 
     async all() {
@@ -37,11 +37,11 @@ export class NoteBook {
     /*
         TODO implement edit method --> update on db
      */
-    /*
+
+
     async edit(id,title,description,prio,finishedUntil,done) {
-        //return await this.db.findOne({_id: id, orderedBy : currentUser});
-        return await this.db.update(_id: id, )
-    }*/
+        return await this.db.update({_id: id}, {$set: {"title": title, "description": description, "prio": prio, finishedUntil,"done": done}});
+    }
 
 }
 

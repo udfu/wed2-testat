@@ -19,6 +19,14 @@ export class NoteController {
         res.render("newNote");
     };
 
+    async editNote(req,res){
+        await noteBook.edit(req.query.id
+            ,req.body.noteTitle,
+            req.body.noteDescription,
+            req.body.notePrio,
+            req.body.noteFinishDate), await this.showIndex(req,res);
+    }
+
     async getNotes(req,res){
         await res.render("showorder", await noteBook.get(req.params.id));
     };
@@ -36,11 +44,11 @@ export class NoteController {
     };
 
     async showEditNote(req,res){
-        console.log(req.params.id);
-        await res.render("editNote", noteBook.get(req.params.id));
-
+        let currentUserID = req.query.id;
+        console.log(currentUserID);
+        //res.json(await noteBook.get(currentUserID));
+        res.render("editNote", await noteBook.get(currentUserID));
     };
-
 
     /*
     async showOrder(req, res) {

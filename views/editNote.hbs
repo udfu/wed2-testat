@@ -1,15 +1,38 @@
 <html>
     <p>Bearbeitung ToDo</p>
-    <form action='/noteadded' method='post'>
-        <p>Title</p>
-        <input id='noteTitle' name='noteTitle' placeholder='enter title'>
-        <p>Beschreibung</p>
-        <input id='noteDescription' name='noteDescription' placeholder='enter description'>
-        <p>Wichtigkeit</p>
-        <input id='notePrio' name='notePrio' placeholder='enter importance'>
-        <p>Fertig bis</p>
-        <input id='noteFinishDate' name='noteFinishDate'>
-        <input type='submit' value='Save Note'>
-        <input type='submit' value='Cancel'>
-    </form>
+    {{#if note}}
+            <form action='/edited?id={{note._id}}' method='post'>
+            <label>
+                Title
+                <input id="noteTitle" name="noteTitle" value={{note.title}} required>
+            </label>
+
+            <label>
+                Beschreibung
+                <textarea id='noteDescription' name='noteDescription'>{{note.description}}</textarea>
+                <!--<input id='noteDescription' name='noteDescription' value={{note.description}} required>-->
+            </label>
+
+            <label>
+                Wichtigkeit
+                <input type="number" id='notePrio' name='notePrio' value={{note.prio}} required min="0" max="5">
+            </label>
+
+            <label>
+                Fertig bis
+                <input type="date" pattern="([0-2]|)[0-9]/([0-1]|)[0-9]/[0-9]{2,4}" id='noteFinishDate' name='noteFinishDate' value={{note.finishedUntil}} required>
+            </label>
+
+            <label>
+                Erledigt
+                <input id='done' name='isDone' value={{note.done}}>
+                <!--<input type="checkbox" value="done" name="done" {{#if note.done}} checked {{/if}} >-->
+            </label>
+
+            <input type='submit' value='Save Note'>
+            <form action="/"><input type='submit' value='Cancel'></form>
+        </form>
+    {{else}}
+        <p>something went wrong - ask your system administrator</p>
+    {{/if}}
 </html>
